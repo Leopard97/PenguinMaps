@@ -14,7 +14,7 @@
     <style>
     #map {
       height: 512px;
-      width: 1024px;
+      width: 974px;
     }
 
     .centered {
@@ -24,12 +24,15 @@
     .buttonsofdoom {
       width: 1024px;
       padding: 25px 25px 25px 25px;
+      background-color: #FFFFFF;
+      box-shadow: 2px 2px 7px #888888;
     }
     .everything {
       
       width: 1024px;
       margin: auto;
       padding: 25px 25px 25px 25px;
+
 
     }
     body {
@@ -38,7 +41,7 @@
     </style>
     <script>
       
-
+// Data - currently only contains restaurants
   inputData = [
 
 {
@@ -778,17 +781,19 @@
   <div class="container-fluid">
     <div class="navbar-header">
       <a class="navbar-brand" href="#">
-        <img alt="doodoo" src="img\Penguin-3.png" height="20" width="20">
+        <img alt="doodoo" src="img\goldCookie.png" height="20" width="20">
       </a>
-      <a class="navbar-brand" href="#">doodoo</a>
+      <a class="navbar-brand" href="#">Mr. Penguin's Daytrip Planner</a>
     </div>
   </div>
 </nav><body>
 <div class="everything">
   <!-- da map \/ \/-->
-  <div id="map" class="centered"><p class="centered"><img src="img\Penguin-3.png"></p></div>
+  
 <!-- da bootonns \/ \/-->
 <div class="buttonsofdoom">
+  <h1 class="centered"><span class="label label-info">Mr. Penguin's Daytrip Planner</span></h1><br>
+  <div id="map" class="centered"><p class="centered"><img src="img\Penguin-3.png"></p></div>
     <input type="checkbox" name="option1" value="restaurants"> Restaurants<br>
 <br>
 <div class="input-group">
