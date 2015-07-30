@@ -13,7 +13,7 @@
     <title>thingy</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <style>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
     <style>
     #map {
       height: 512px;
@@ -783,7 +783,7 @@
   <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">
+      <a class="navbar-brand" href="http://orteil.dashnet.org/cookieclicker/">
         <img alt="doodoo" src="img\goldCookie.png" height="20" width="20">
       </a>
       <a class="navbar-brand" href="#">Mr. Penguin's Daytrip Planner</a>
@@ -797,8 +797,9 @@
 <div class="buttonsofdoom">
   <h1 class="centered"><span class="label label-info">Mr. Penguin's Daytrip Planner</span></h1><br>
   <div id="map" class="centered"><p class="centered"><img src="img\Penguin-3.png"></p></div><br>
-    <input type="checkbox" name="option1" value="restaurants"> Restaurants<br>
+    <div class="well well-sm"><input type="checkbox" name="option1" value="restaurants"> Restaurants<br>
 <br>
+
 <div class="input-group">
   <span class="input-group-addon" id="basic-addon1">Minimum stars</span>
   <input type="text" class="form-control" placeholder="1-5" aria-describedby="basic-addon1">
@@ -814,8 +815,9 @@
 <input type="checkbox" name="option6" value="Chinese"> Chinese<br>
 <input type="checkbox" name="option7" value="Indian"> Indian<br>
 <input type="checkbox" name="option8" value="Multi/Other/Uncategorized"> Restaurants<br>
-<br>
-<br>
+</div>
+
+<div class="well well-sm">
 <input type="checkbox" name="option2" value="indoor attractions"> Indoor attractions<br>
 <div class="input-group">
   <span class="input-group-addon" id="basic-addon1">Minimum price</span>
@@ -826,8 +828,9 @@
   <span class="input-group-addon" id="basic-addon1">Maximum price</span>
   <input type="text" class="form-control" placeholder="Free, £5, £10, £15, £20+" aria-describedby="basic-addon1">
 </div>
-<br>
-<br>
+</div>
+
+<div class="well well-sm">
 <input type="checkbox" name="option3" value="outdoor attractions"> Outdoor attractions<br>
 <div class="input-group">
   <span class="input-group-addon" id="basic-addon1">Minimum price</span>
@@ -836,11 +839,11 @@
 <br>
 <div class="input-group">
   <span class="input-group-addon" id="basic-addon1">Maximum price</span>
-  <input type="text" class="form-control" placeholder="Free, £5, £10, £15, £20+" aria-describedby="basic-addon1">
+  <input type="text" class="form-control" placeholder="Free, £5, £10, £15, £20+" aria-describedby="basic-addon1"></div>
 </div>
 </div>
 <!--stuffs -->
-  <!--  <p class="centered">
+    <!-- <p class="centered">
   <div class="dropdown">
   <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
     Dropdown
@@ -887,13 +890,30 @@
           .openPopup();
       };
 
-      
-      function inputCoords(inputLat, InputLon) {
+      //ignore this \/ \/
+      // function inputCoords(inputLat, InputLon) {
 
-        var inputLat = inputLatBox.value;
-        var inputLon = inputLonBox.value;
+      //   var inputLat = inputLatBox.value;
+      //   var inputLon = inputLonBox.value;
  
-        L.map('map').setView([inputLat, inputLon], 13);
+      //   L.map('map').setView([inputLat, inputLon], 13);
+      // }
+
+      function addMarker(location, text) {
+        L.marker(location).addTo(map).bindPopup(text).openPopup();
+      }
+
+      function calculateDistances(origin1, destinationA, travelMode1) {
+        var service = new google.maps.DistanceMatrixService();
+        service.getDistanceMatrix(
+          {
+            origins: [origin1],
+            destinations: [destinationA],
+            travelMode: travelMode1,
+            unitSystem: google.maps.UnitSystem.METRIC,
+            avoidHighways: false,
+            avoidTolls: false
+          }, callback);
       }
     </script>
     <p id="demo"></p>
