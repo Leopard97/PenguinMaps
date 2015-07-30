@@ -1,0 +1,738 @@
+from flask import Flask
+import json
+app = Flask(__name__)
+
+
+
+@app.route("/")
+def root():
+    return print_restruants(inputData)
+
+inputData = [
+
+{
+  "type": "node",
+  "id": 331289907,
+  "lat": 55.9366417,
+  "lon": -3.1570870,
+  "tags": {
+    "amenity": "restaurant",
+    "created_by": "Potlatch 0.10f",
+    "name": "Prestonfield House",
+    "tourism": "hotel"
+  }
+},
+{
+  "type": "node",
+  "id": 444778140,
+  "lat": 55.9395492,
+  "lon": -3.2038813,
+  "tags": {
+    "addr:housenumber": "12",
+    "addr:street": "Barclay Terrace",
+    "amenity": "restaurant",
+    "cuisine": "steak_house",
+    "name": "Katie's Diner",
+    "phone": "+44 131 229 1394",
+    "source": "survey",
+    "website": "http://www.katiesdiner.com/"
+  }
+},
+{
+  "type": "node",
+  "id": 444778142,
+  "lat": 55.9355709,
+  "lon": -3.2102528,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "italian",
+    "name": "Osteria Del Tempo Perso",
+    "source": "survey"
+  }
+},
+{
+  "type": "node",
+  "id": 482451725,
+  "lat": 55.9395830,
+  "lon": -3.2207102,
+  "tags": {
+    "addr:housenumber": "9",
+    "addr:street": "Dundee Terrace",
+    "amenity": "restaurant",
+    "cuisine": "indian",
+    "name": "Guru",
+    "phone": "+44 131 221 9779",
+    "source": "survey",
+    "website": "http://www.gurubaltirestaurant.com/"
+  }
+},
+{
+  "type": "node",
+  "id": 482452170,
+  "lat": 55.9396107,
+  "lon": -3.2206033,
+  "tags": {
+    "addr:housenumber": "7",
+    "addr:street": "Dundee Terrace",
+    "amenity": "restaurant",
+    "cuisine": "italian",
+    "name": "Piatto Verde",
+    "phone": "+44 131 228 2588"
+  }
+},
+{
+  "type": "node",
+  "id": 482901320,
+  "lat": 55.9318108,
+  "lon": -3.2374274,
+  "tags": {
+    "addr:city": "Edinburgh",
+    "addr:housenumber": "1-2",
+    "addr:postcode": "EH14 1NY",
+    "addr:street": "Moat Place",
+    "amenity": "restaurant",
+    "cuisine": "indian",
+    "delivery": "yes",
+    "name": "Jashans Indian Restaurant",
+    "opening_hours": "Mo-Sa 12:00-14:00, 17:00-23:00; Su 12:00-22:30",
+    "takeaway": "yes"
+  }
+},
+{
+  "type": "node",
+  "id": 495001444,
+  "lat": 55.9282620,
+  "lon": -3.2003920,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Dining Hall"
+  }
+},
+{
+  "type": "node",
+  "id": 613212065,
+  "lat": 55.9356483,
+  "lon": -3.2096691,
+  "tags": {
+    "addr:housenumber": "171",
+    "addr:street": "Bruntsfield Place",
+    "amenity": "restaurant",
+    "cuisine": "indian",
+    "name": "Himalaya"
+  }
+},
+{
+  "type": "node",
+  "id": 613227825,
+  "lat": 55.9364920,
+  "lon": -3.2084274,
+  "tags": {
+    "addr:city": "Edinburgh",
+    "addr:housenumber": "158",
+    "addr:postcode": "EH10 4ER",
+    "addr:street": "Bruntsfield Place",
+    "amenity": "restaurant",
+    "cuisine": "italian",
+    "name": "Papillo"
+  }
+},
+{
+  "type": "node",
+  "id": 1429186302,
+  "lat": 55.9337528,
+  "lon": -3.2109407,
+  "tags": {
+    "addr:housenumber": "19",
+    "addr:postcode": "EH10 5DP",
+    "addr:street": "Colinton Road",
+    "amenity": "restaurant",
+    "name": "Bia Bistrot",
+    "website": "http://www.biabistrot.co.uk/"
+  }
+},
+{
+  "type": "node",
+  "id": 1435322488,
+  "lat": 55.9335062,
+  "lon": -3.1782145,
+  "tags": {
+    "addr:housenumber": "62",
+    "addr:street": "Ratcliffe Terrace",
+    "amenity": "restaurant",
+    "cuisine": "chinese",
+    "name": "Good Year",
+    "phone": "+44 131 667 9988",
+    "source": "survey",
+    "takeaway": "yes",
+    "website": "http://www.goodyearchineserestaurant.com/"
+  }
+},
+{
+  "type": "node",
+  "id": 1445583341,
+  "lat": 55.9382383,
+  "lon": -3.1924272,
+  "tags": {
+    "addr:housenumber": "11",
+    "addr:postcode": "EH9 1HY",
+    "addr:street": "Roseneath Street",
+    "amenity": "restaurant",
+    "cuisine": "seafood",
+    "name": "Sweet Melindas",
+    "website": "http://www.sweetmelindas.co.uk/"
+  }
+},
+{
+  "type": "node",
+  "id": 1492283288,
+  "lat": 55.9329934,
+  "lon": -3.3152155,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "The Ritz Bar and Grill"
+  }
+},
+{
+  "type": "node",
+  "id": 1661487964,
+  "lat": 55.9368453,
+  "lon": -3.2080850,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "french",
+    "name": "Three Birds"
+  }
+},
+{
+  "type": "node",
+  "id": 1661647731,
+  "lat": 55.9391854,
+  "lon": -3.2049304,
+  "tags": {
+    "addr:city": "Edinburgh",
+    "addr:housenumber": "40-41",
+    "addr:postcode": "EH10 4HJ",
+    "addr:street": "Bruntsfield Place",
+    "amenity": "restaurant",
+    "cuisine": "thai",
+    "name": "Thai Lemongrass"
+  }
+},
+{
+  "type": "node",
+  "id": 1689531003,
+  "lat": 55.9354188,
+  "lon": -3.2098186,
+  "tags": {
+    "addr:housenumber": "185",
+    "addr:street": "Bruntsfield Place",
+    "amenity": "restaurant",
+    "cuisine": "italian",
+    "name": "Inca"
+  }
+},
+{
+  "type": "node",
+  "id": 1880706124,
+  "lat": 55.9265106,
+  "lon": -3.2094010,
+  "tags": {
+    "addr:housenumber": "372",
+    "addr:street": "Morningside Road",
+    "amenity": "restaurant",
+    "cuisine": "italian",
+    "name": "Caffe e Cucina",
+    "opening_hours": "Mo-Fr 10:00-00:00;Sa-Su 10:15-00:00",
+    "phone": "+44 131 447 0345",
+    "source": "survey"
+  }
+},
+{
+  "type": "node",
+  "id": 1882300371,
+  "lat": 55.9371166,
+  "lon": -3.1786816,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Hellers Kitchen"
+  }
+},
+{
+  "type": "node",
+  "id": 1882300375,
+  "lat": 55.9373587,
+  "lon": -3.1783299,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "japanese",
+    "name": "AJI Sushi"
+  }
+},
+{
+  "type": "node",
+  "id": 2089241629,
+  "lat": 55.9392330,
+  "lon": -3.2127435,
+  "tags": {
+    "addr:city": "Edinburgh",
+    "addr:country": "GB",
+    "addr:housenumber": "169-173",
+    "addr:street": "Gilmore Place",
+    "amenity": "restaurant",
+    "cuisine": "african",
+    "name": "Jambo",
+    "phone": "+44 131 228 6088",
+    "source": "survey",
+    "website": "http://www.jambogrill.co.uk/"
+  }
+},
+{
+  "type": "node",
+  "id": 2177385449,
+  "lat": 55.9265332,
+  "lon": -3.2084291,
+  "tags": {
+    "addr:housenumber": "1",
+    "addr:street": "Nile Grove",
+    "amenity": "restaurant",
+    "cuisine": "italian",
+    "name": "Pizza Express",
+    "opening_hours": "Mo-Th 11:30-22:00;Fr-Sa 11:30-23:00;Su 11:30-22:00",
+    "phone": "+44 131 447 6055",
+    "source": "survey",
+    "takeaway": "yes",
+    "website": "http://www.pizzaexpress.com/"
+  }
+},
+{
+  "type": "node",
+  "id": 2283518406,
+  "lat": 55.9391841,
+  "lon": -3.2128654,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "chinese",
+    "name": "Taste of China",
+    "phone": "+44 131 228 9988"
+  }
+},
+{
+  "type": "node",
+  "id": 2293570308,
+  "lat": 55.9233856,
+  "lon": -3.1748328,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Pi in the Sky"
+  }
+},
+{
+  "type": "node",
+  "id": 2295319274,
+  "lat": 55.9398689,
+  "lon": -3.2196084,
+  "tags": {
+    "addr:housenumber": "161",
+    "addr:street": "Dundee Street",
+    "amenity": "restaurant",
+    "cuisine": "portuguese",
+    "name": "Tugas Amor",
+    "phone": "+44 131 228 8804",
+    "source": "survey"
+  }
+},
+{
+  "type": "node",
+  "id": 2295319280,
+  "lat": 55.9398073,
+  "lon": -3.2198459,
+  "tags": {
+    "addr:housenumber": "167-169-171",
+    "addr:street": "Dundee Street",
+    "amenity": "restaurant",
+    "cuisine": "chinese",
+    "name": "Tian Tian",
+    "source": "survey"
+  }
+},
+{
+  "type": "node",
+  "id": 2366138542,
+  "lat": 55.9388452,
+  "lon": -3.1790659,
+  "tags": {
+    "addr:housenumber": "13",
+    "addr:street": "Newington Road",
+    "amenity": "restaurant",
+    "name": "Yak & Yeti",
+    "source": "survey"
+  }
+},
+{
+  "type": "node",
+  "id": 2394807284,
+  "lat": 55.9248346,
+  "lon": -3.2543275,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "chinese",
+    "name": "Imperial Palace",
+    "source": "survey"
+  }
+},
+{
+  "type": "node",
+  "id": 2395690992,
+  "lat": 55.9374976,
+  "lon": -3.1806164,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "italian",
+    "name": "Sambuca",
+    "source": "survey"
+  }
+},
+{
+  "type": "node",
+  "id": 2395690995,
+  "lat": 55.9389517,
+  "lon": -3.1803682,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "steak_house",
+    "name": "Los Argentinos",
+    "source": "survey"
+  }
+},
+{
+  "type": "node",
+  "id": 2399961327,
+  "lat": 55.9320058,
+  "lon": -3.2097519,
+  "tags": {
+    "addr:housenumber": "45",
+    "addr:street": "Morningside Road",
+    "amenity": "restaurant",
+    "cuisine": "italian",
+    "name": "Nonna's",
+    "source": "survey"
+  }
+},
+{
+  "type": "node",
+  "id": 2426508086,
+  "lat": 55.9312746,
+  "lon": -3.1719521,
+  "tags": {
+    "addr:city": "Edinburgh",
+    "addr:country": "GB",
+    "addr:housenumber": "38",
+    "addr:postcode": "EH9 2BY",
+    "addr:street": "Mayfield Gardens",
+    "amenity": "restaurant",
+    "name": "Delhi Diner",
+    "source": "survey"
+  }
+},
+{
+  "type": "node",
+  "id": 2426508091,
+  "lat": 55.9338048,
+  "lon": -3.1784443,
+  "tags": {
+    "addr:housenumber": "44",
+    "addr:street": "Ratcliffe Terrace",
+    "amenity": "restaurant",
+    "cuisine": "chinese",
+    "name": "Kwok Brasserie",
+    "phone": "+44 131 668 1818",
+    "source": "survey",
+    "website": "http://www.kwok-brasserie.co.uk/"
+  }
+},
+{
+  "type": "node",
+  "id": 2426508101,
+  "lat": 55.9375777,
+  "lon": -3.1779460,
+  "tags": {
+    "addr:housenumber": "107",
+    "addr:street": "Newington Road",
+    "amenity": "restaurant",
+    "cuisine": "indian",
+    "name": "Voujon",
+    "source": "survey",
+    "website": "http://www.voujonedinburgh.co.uk/"
+  }
+},
+{
+  "type": "node",
+  "id": 2426508118,
+  "lat": 55.9378124,
+  "lon": -3.1781642,
+  "tags": {
+    "addr:housenumber": "85-87",
+    "addr:street": "Newington Road",
+    "amenity": "restaurant",
+    "cuisine": "italian",
+    "name": "Positano",
+    "source": "survey"
+  }
+},
+{
+  "type": "node",
+  "id": 2426508126,
+  "lat": 55.9354709,
+  "lon": -3.1798259,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "indian",
+    "name": "Pataka"
+  }
+},
+{
+  "type": "node",
+  "id": 2456285682,
+  "lat": 55.9323166,
+  "lon": -3.2101798,
+  "tags": {
+    "addr:city": "Edinburgh",
+    "addr:housenumber": "74",
+    "addr:street": "Morningside Road",
+    "amenity": "restaurant",
+    "cuisine": "indian",
+    "name": "Morningside Spice"
+  }
+},
+{
+  "type": "node",
+  "id": 2456285687,
+  "lat": 55.9321089,
+  "lon": -3.2101997,
+  "tags": {
+    "addr:housenumber": "86",
+    "addr:street": "Morningside Road",
+    "amenity": "restaurant",
+    "cuisine": "indian",
+    "name": "The Clay Oven"
+  }
+},
+{
+  "type": "node",
+  "id": 2456285691,
+  "lat": 55.9308794,
+  "lon": -3.2100746,
+  "tags": {
+    "addr:housenumber": "128",
+    "addr:street": "Morningside Road",
+    "amenity": "restaurant",
+    "cuisine": "indian",
+    "name": "The Gurkha",
+    "source": "survey"
+  }
+},
+{
+  "type": "node",
+  "id": 2494817113,
+  "lat": 55.9396258,
+  "lon": -3.1829811,
+  "tags": {
+    "addr:housenumber": "3-5A",
+    "addr:street": "Sciennes",
+    "amenity": "restaurant",
+    "cuisine": "fish_and_chips",
+    "name": "The Codfather",
+    "phone": "+44 131 629 1288",
+    "website": "http://www.codfatheredinburgh.co.uk/"
+  }
+},
+{
+  "type": "node",
+  "id": 2557750252,
+  "lat": 55.9349914,
+  "lon": -3.1790260,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "italian",
+    "name": "The New Bell",
+    "website": "http://www.newbelledinburgh.co.uk"
+  }
+},
+{
+  "type": "node",
+  "id": 2654390057,
+  "lat": 55.9224491,
+  "lon": -3.2107749,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "indian",
+    "name": "The Hill Station",
+    "takeaway": "yes"
+  }
+},
+{
+  "type": "node",
+  "id": 2700632770,
+  "lat": 55.9387155,
+  "lon": -3.1789608,
+  "tags": {
+    "addr:housenumber": "21",
+    "addr:street": "Newington Road",
+    "amenity": "restaurant",
+    "cuisine": "turkish",
+    "name": "Verdo",
+    "phone": "+44 131 629 1337",
+    "source": "survey"
+  }
+},
+{
+  "type": "node",
+  "id": 2756884780,
+  "lat": 55.9348643,
+  "lon": -3.1686663,
+  "tags": {
+    "amenity": "restaurant",
+    "byob": "yes",
+    "cuisine": "indian",
+    "name": "Thaisanuk"
+  }
+},
+{
+  "type": "node",
+  "id": 2774743738,
+  "lat": 55.9382875,
+  "lon": -3.1812525,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "thai",
+    "name": "Celadon Thai"
+  }
+},
+{
+  "type": "node",
+  "id": 2774743742,
+  "lat": 55.9387673,
+  "lon": -3.1815841,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Hewat's"
+  }
+},
+{
+  "type": "node",
+  "id": 3043498690,
+  "lat": 55.9385351,
+  "lon": -3.1788147,
+  "tags": {
+    "addr:housenumber": "33",
+    "addr:postcode": "EH9 1QR",
+    "addr:street": "Newington Road",
+    "amenity": "restaurant",
+    "name": "Apiary",
+    "phone": "+44 131 668 4999",
+    "source": "survey",
+    "website": "http://www.apiaryrestaurant.co.uk/",
+    "wheelchair": "no"
+  }
+},
+{
+  "type": "node",
+  "id": 3111236573,
+  "lat": 55.9382413,
+  "lon": -3.1927552,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "thai",
+    "name": "SaikЕЌ Kitchen"
+  }
+},
+{
+  "type": "node",
+  "id": 3487555482,
+  "lat": 55.9377112,
+  "lon": -3.2170224,
+  "tags": {
+    "amenity": "restaurant",
+    "name": "Club Class Catering"
+  }
+},
+{
+  "type": "node",
+  "id": 3487557795,
+  "lat": 55.9373959,
+  "lon": -3.2166076,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "chinese",
+    "name": "South China Inn"
+  }
+},
+{
+  "type": "node",
+  "id": 3492896535,
+  "lat": 55.9315505,
+  "lon": -3.2517416,
+  "tags": {
+    "amenity": "restaurant",
+    "cuisine": "chinese",
+    "name": "Yun Feng",
+    "source": "survey"
+  }
+},
+{
+  "type": "node",
+  "id": 3521487716,
+  "lat": 55.9388946,
+  "lon": -3.1813406,
+  "tags": {
+    "addr:housenumber": "41",
+    "addr:street": "West Preston Street",
+    "amenity": "restaurant",
+    "name": "Hanedan",
+    "phone": "+44 131 667 4242",
+    "source": "survey"
+  }
+},
+{
+  "type": "node",
+  "id": 3521487717,
+  "lat": 55.9389130,
+  "lon": -3.1809911,
+  "tags": {
+    "addr:housenumber": "34",
+    "addr:street": "West Preston Street",
+    "amenity": "restaurant",
+    "cuisine": "japanese",
+    "name": "Ichiban",
+    "phone": "+44 131 662 1133",
+    "source": "survey"
+}
+  }
+]
+
+def only_important(restaurant):
+  tags = restaurant["tags"]
+  if "cuisine" in tags.keys():
+    return {
+    "name": tags["name"],
+    "cuisine": tags["cuisine"] 
+  }
+  else:
+    return "Not valid"
+
+  
+
+
+    
+
+
+def print_restruants(variable):
+  result = []
+  for restaurant in variable:
+    result.append(only_important(restaurant))
+  return json.dumps(result)
+  # return variable["tags"]["cuisine"]
+
+root()
+if __name__ == "__main__":
+    app.run(debug=True)
