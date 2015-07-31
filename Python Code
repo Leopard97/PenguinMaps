@@ -1,52 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <!-- just a comment to prove I can commit changes -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css" />
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js">
-      var map = new L.Map('map', { searchControl: {layer: searchLayer} });
-    </script>
-    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-    <title>Mr. Penguin's Daytrip Planner!</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
-    <style>
-    #map {
-      height: 512px;
-      width: 974px;
-    }
-
-    .centered {
-      text-align: center;
-    }
-
-    .buttonsofdoom {
-      width: 1024px;
-      padding: 25px 25px 25px 25px;
-      background-color: #FFFFFF;
-      box-shadow: 2px 2px 7px #888888;
-    }
-    .everything {
-      
-      width: 1024px;
-      margin: auto;
-      padding: 25px 25px 25px 25px;
+from flask import Flask
+import json
+app = Flask(__name__)
 
 
-    }
-    body {
-      background-image: url('https://cloud.githubusercontent.com/assets/6200238/8984433/833ee80a-36c9-11e5-9687-d1f34948284c.png');
-    }
-    </style>
-    <script>
-      
-// Data - currently only contains restaurants
-  inputData = [
+
+@app.route("/")
+def root():
+    return print_restruants(inputData)
+
+inputData = [
 
 {
   "type": "node",
@@ -66,8 +28,8 @@
   "lat": 55.9395492,
   "lon": -3.2038813,
   "tags": {
-    "addrhousenumber": "12",
-    "addrstreet": "Barclay Terrace",
+    "addr:housenumber": "12",
+    "addr:street": "Barclay Terrace",
     "amenity": "restaurant",
     "cuisine": "steak_house",
     "name": "Katie's Diner",
@@ -94,8 +56,8 @@
   "lat": 55.9395830,
   "lon": -3.2207102,
   "tags": {
-    "addrhousenumber": "9",
-    "addrstreet": "Dundee Terrace",
+    "addr:housenumber": "9",
+    "addr:street": "Dundee Terrace",
     "amenity": "restaurant",
     "cuisine": "indian",
     "name": "Guru",
@@ -110,8 +72,8 @@
   "lat": 55.9396107,
   "lon": -3.2206033,
   "tags": {
-    "addrhousenumber": "7",
-    "addrstreet": "Dundee Terrace",
+    "addr:housenumber": "7",
+    "addr:street": "Dundee Terrace",
     "amenity": "restaurant",
     "cuisine": "italian",
     "name": "Piatto Verde",
@@ -125,9 +87,9 @@
   "lon": -3.2374274,
   "tags": {
     "addr:city": "Edinburgh",
-    "addrhousenumber": "1-2",
+    "addr:housenumber": "1-2",
     "addr:postcode": "EH14 1NY",
-    "addrstreet": "Moat Place",
+    "addr:street": "Moat Place",
     "amenity": "restaurant",
     "cuisine": "indian",
     "delivery": "yes",
@@ -152,8 +114,8 @@
   "lat": 55.9356483,
   "lon": -3.2096691,
   "tags": {
-    "addrhousenumber": "171",
-    "addrstreet": "Bruntsfield Place",
+    "addr:housenumber": "171",
+    "addr:street": "Bruntsfield Place",
     "amenity": "restaurant",
     "cuisine": "indian",
     "name": "Himalaya"
@@ -166,9 +128,9 @@
   "lon": -3.2084274,
   "tags": {
     "addr:city": "Edinburgh",
-    "addrhousenumber": "158",
+    "addr:housenumber": "158",
     "addr:postcode": "EH10 4ER",
-    "addrstreet": "Bruntsfield Place",
+    "addr:street": "Bruntsfield Place",
     "amenity": "restaurant",
     "cuisine": "italian",
     "name": "Papillo"
@@ -180,9 +142,9 @@
   "lat": 55.9337528,
   "lon": -3.2109407,
   "tags": {
-    "addrhousenumber": "19",
+    "addr:housenumber": "19",
     "addr:postcode": "EH10 5DP",
-    "addrstreet": "Colinton Road",
+    "addr:street": "Colinton Road",
     "amenity": "restaurant",
     "name": "Bia Bistrot",
     "website": "http://www.biabistrot.co.uk/"
@@ -194,8 +156,8 @@
   "lat": 55.9335062,
   "lon": -3.1782145,
   "tags": {
-    "addrhousenumber": "62",
-    "addrstreet": "Ratcliffe Terrace",
+    "addr:housenumber": "62",
+    "addr:street": "Ratcliffe Terrace",
     "amenity": "restaurant",
     "cuisine": "chinese",
     "name": "Good Year",
@@ -211,9 +173,9 @@
   "lat": 55.9382383,
   "lon": -3.1924272,
   "tags": {
-    "addrhousenumber": "11",
+    "addr:housenumber": "11",
     "addr:postcode": "EH9 1HY",
-    "addrstreet": "Roseneath Street",
+    "addr:street": "Roseneath Street",
     "amenity": "restaurant",
     "cuisine": "seafood",
     "name": "Sweet Melindas",
@@ -248,9 +210,9 @@
   "lon": -3.2049304,
   "tags": {
     "addr:city": "Edinburgh",
-    "addrhousenumber": "40-41",
+    "addr:housenumber": "40-41",
     "addr:postcode": "EH10 4HJ",
-    "addrstreet": "Bruntsfield Place",
+    "addr:street": "Bruntsfield Place",
     "amenity": "restaurant",
     "cuisine": "thai",
     "name": "Thai Lemongrass"
@@ -262,8 +224,8 @@
   "lat": 55.9354188,
   "lon": -3.2098186,
   "tags": {
-    "addrhousenumber": "185",
-    "addrstreet": "Bruntsfield Place",
+    "addr:housenumber": "185",
+    "addr:street": "Bruntsfield Place",
     "amenity": "restaurant",
     "cuisine": "italian",
     "name": "Inca"
@@ -275,8 +237,8 @@
   "lat": 55.9265106,
   "lon": -3.2094010,
   "tags": {
-    "addrhousenumber": "372",
-    "addrstreet": "Morningside Road",
+    "addr:housenumber": "372",
+    "addr:street": "Morningside Road",
     "amenity": "restaurant",
     "cuisine": "italian",
     "name": "Caffe e Cucina",
@@ -314,8 +276,8 @@
   "tags": {
     "addr:city": "Edinburgh",
     "addr:country": "GB",
-    "addrhousenumber": "169-173",
-    "addrstreet": "Gilmore Place",
+    "addr:housenumber": "169-173",
+    "addr:street": "Gilmore Place",
     "amenity": "restaurant",
     "cuisine": "african",
     "name": "Jambo",
@@ -330,8 +292,8 @@
   "lat": 55.9265332,
   "lon": -3.2084291,
   "tags": {
-    "addrhousenumber": "1",
-    "addrstreet": "Nile Grove",
+    "addr:housenumber": "1",
+    "addr:street": "Nile Grove",
     "amenity": "restaurant",
     "cuisine": "italian",
     "name": "Pizza Express",
@@ -370,8 +332,8 @@
   "lat": 55.9398689,
   "lon": -3.2196084,
   "tags": {
-    "addrhousenumber": "161",
-    "addrstreet": "Dundee Street",
+    "addr:housenumber": "161",
+    "addr:street": "Dundee Street",
     "amenity": "restaurant",
     "cuisine": "portuguese",
     "name": "Tugas Amor",
@@ -385,8 +347,8 @@
   "lat": 55.9398073,
   "lon": -3.2198459,
   "tags": {
-    "addrhousenumber": "167-169-171",
-    "addrstreet": "Dundee Street",
+    "addr:housenumber": "167-169-171",
+    "addr:street": "Dundee Street",
     "amenity": "restaurant",
     "cuisine": "chinese",
     "name": "Tian Tian",
@@ -399,8 +361,8 @@
   "lat": 55.9388452,
   "lon": -3.1790659,
   "tags": {
-    "addrhousenumber": "13",
-    "addrstreet": "Newington Road",
+    "addr:housenumber": "13",
+    "addr:street": "Newington Road",
     "amenity": "restaurant",
     "name": "Yak & Yeti",
     "source": "survey"
@@ -448,8 +410,8 @@
   "lat": 55.9320058,
   "lon": -3.2097519,
   "tags": {
-    "addrhousenumber": "45",
-    "addrstreet": "Morningside Road",
+    "addr:housenumber": "45",
+    "addr:street": "Morningside Road",
     "amenity": "restaurant",
     "cuisine": "italian",
     "name": "Nonna's",
@@ -464,9 +426,9 @@
   "tags": {
     "addr:city": "Edinburgh",
     "addr:country": "GB",
-    "addrhousenumber": "38",
+    "addr:housenumber": "38",
     "addr:postcode": "EH9 2BY",
-    "addrstreet": "Mayfield Gardens",
+    "addr:street": "Mayfield Gardens",
     "amenity": "restaurant",
     "name": "Delhi Diner",
     "source": "survey"
@@ -478,8 +440,8 @@
   "lat": 55.9338048,
   "lon": -3.1784443,
   "tags": {
-    "addrhousenumber": "44",
-    "addrstreet": "Ratcliffe Terrace",
+    "addr:housenumber": "44",
+    "addr:street": "Ratcliffe Terrace",
     "amenity": "restaurant",
     "cuisine": "chinese",
     "name": "Kwok Brasserie",
@@ -494,8 +456,8 @@
   "lat": 55.9375777,
   "lon": -3.1779460,
   "tags": {
-    "addrhousenumber": "107",
-    "addrstreet": "Newington Road",
+    "addr:housenumber": "107",
+    "addr:street": "Newington Road",
     "amenity": "restaurant",
     "cuisine": "indian",
     "name": "Voujon",
@@ -509,8 +471,8 @@
   "lat": 55.9378124,
   "lon": -3.1781642,
   "tags": {
-    "addrhousenumber": "85-87",
-    "addrstreet": "Newington Road",
+    "addr:housenumber": "85-87",
+    "addr:street": "Newington Road",
     "amenity": "restaurant",
     "cuisine": "italian",
     "name": "Positano",
@@ -535,8 +497,8 @@
   "lon": -3.2101798,
   "tags": {
     "addr:city": "Edinburgh",
-    "addrhousenumber": "74",
-    "addrstreet": "Morningside Road",
+    "addr:housenumber": "74",
+    "addr:street": "Morningside Road",
     "amenity": "restaurant",
     "cuisine": "indian",
     "name": "Morningside Spice"
@@ -548,8 +510,8 @@
   "lat": 55.9321089,
   "lon": -3.2101997,
   "tags": {
-    "addrhousenumber": "86",
-    "addrstreet": "Morningside Road",
+    "addr:housenumber": "86",
+    "addr:street": "Morningside Road",
     "amenity": "restaurant",
     "cuisine": "indian",
     "name": "The Clay Oven"
@@ -561,8 +523,8 @@
   "lat": 55.9308794,
   "lon": -3.2100746,
   "tags": {
-    "addrhousenumber": "128",
-    "addrstreet": "Morningside Road",
+    "addr:housenumber": "128",
+    "addr:street": "Morningside Road",
     "amenity": "restaurant",
     "cuisine": "indian",
     "name": "The Gurkha",
@@ -575,8 +537,8 @@
   "lat": 55.9396258,
   "lon": -3.1829811,
   "tags": {
-    "addrhousenumber": "3-5A",
-    "addrstreet": "Sciennes",
+    "addr:housenumber": "3-5A",
+    "addr:street": "Sciennes",
     "amenity": "restaurant",
     "cuisine": "fish_and_chips",
     "name": "The Codfather",
@@ -614,8 +576,8 @@
   "lat": 55.9387155,
   "lon": -3.1789608,
   "tags": {
-    "addrhousenumber": "21",
-    "addrstreet": "Newington Road",
+    "addr:housenumber": "21",
+    "addr:street": "Newington Road",
     "amenity": "restaurant",
     "cuisine": "turkish",
     "name": "Verdo",
@@ -662,9 +624,9 @@
   "lat": 55.9385351,
   "lon": -3.1788147,
   "tags": {
-    "addrhousenumber": "33",
+    "addr:housenumber": "33",
     "addr:postcode": "EH9 1QR",
-    "addrstreet": "Newington Road",
+    "addr:street": "Newington Road",
     "amenity": "restaurant",
     "name": "Apiary",
     "phone": "+44 131 668 4999",
@@ -723,8 +685,8 @@
   "lat": 55.9388946,
   "lon": -3.1813406,
   "tags": {
-    "addrhousenumber": "41",
-    "addrstreet": "West Preston Street",
+    "addr:housenumber": "41",
+    "addr:street": "West Preston Street",
     "amenity": "restaurant",
     "name": "Hanedan",
     "phone": "+44 131 667 4242",
@@ -737,192 +699,39 @@
   "lat": 55.9389130,
   "lon": -3.1809911,
   "tags": {
-    "addrhousenumber": "34",
-    "addrstreet": "West Preston Street",
+    "addr:housenumber": "34",
+    "addr:street": "West Preston Street",
     "amenity": "restaurant",
     "cuisine": "japanese",
     "name": "Ichiban",
     "phone": "+44 131 662 1133",
     "source": "survey"
-  }
 }
+  }
 ]
-// var json1 = $.getJSON('rest.json', {tagmode: 'any', format: 'json'});
-// var inputData = jQuery.parseJSON(json1);
+
+def only_important(restaurant):
+  tags = restaurant["tags"]
+  if "cuisine" in tags.keys():
+    return {
+    "name": tags["name"],
+    "cuisine": tags["cuisine"] 
+  }
+  else:
+    return "Not valid"
 
   
 
-  var finalData = [];
-  for (var i = 0; i < inputData.length; i++) {
-    var item = inputData[i];
-    finalData.push([item.lat, item.lon]);
 
-  };
-  // finalData2 = [];
-  // for (var i = inputData.length - 1; i >= 0; i--) {
-  //   var item = inputData[i];
-  //   finalData2.push([item.name, item.cuisine]);
-
-  // };
-      
-      
-     
-      
-
-    </script>
-
-    <!-- Bootstrap -->
- 
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-  </head>
-  <nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="http://orteil.dashnet.org/cookieclicker/">
-        <img alt="doodoo" src="https://cloud.githubusercontent.com/assets/6200238/8984496/de316c38-36c9-11e5-87e9-9d1f9953ef7e.png" height="20" width="20">
-      </a>
-      <a class="navbar-brand" href="#">Mr. Penguin's Daytrip Planner</a>
-    </div>
-  </div>
-</nav><body>
-<div class="everything">
-  <!-- da map \/ \/-->
-  
-<!-- da bootonns \/ \/-->
-<div class="buttonsofdoom">
-  <h1 class="centered"><span class="label label-info">Mr. Penguin's Daytrip Planner</span></h1><br>
-  <div id="map" class="centered"><p class="centered"><img src="https://cloud.githubusercontent.com/assets/6200238/8984381/1ce112a4-36c9-11e5-8ef3-6f6045c38156.png"></p></div><br>
-    <div class="well well-sm"><input type="checkbox" name="option1" value="restaurants" id="restaurant"> Restaurants<br>
-<br>
-
-<div class="input-group">
-  <span class="input-group-addon" id="restaurant_min_stars">Minimum stars</span>
-  <input type="text" class="form-control" placeholder="1-5" aria-describedby="basic-addon1">
-</div>
-<br>
-<div class="input-group">
-  <span class="input-group-addon" id="restaurant_max_stars">Maximum stars</span>
-  <input type="text" class="form-control" placeholder="1-5" aria-describedby="basic-addon1">
-</div>
-<br>
-<input type="checkbox" name="option4" id="british/american"> British/American<br>
-<input type="checkbox" name="option5" id="Italian"> Italian<br>
-<input type="checkbox" name="option6" id="Chinese"> Chinese<br>
-<input type="checkbox" name="option7" id="Indian"> Indian<br>
-<input type="checkbox" name="option8" id="Multi/Other/Uncategorized"> Other<br>
-</div>
-
-<div class="well well-sm">
-<input type="checkbox" name="option2" value="indoor attractions" id="indoor_attractions"> Indoor attractions<br>
-<div class="input-group">
-  <span class="input-group-addon" id="ind_min_price">Minimum price</span>
-  <input type="text" class="form-control" placeholder="Free, £5, £10, £15, £20+" aria-describedby="basic-addon1">
-</div>
-<br>
-<div class="input-group">
-  <span class="input-group-addon" id="ind_max_price">Maximum price</span>
-  <input type="text" class="form-control" placeholder="Free, £5, £10, £15, £20+" aria-describedby="basic-addon1">
-</div>
-</div>
-
-<div class="well well-sm">
-<input type="checkbox" name="option3" value="outdoor attractions" id="outdoor_attractions"> Outdoor attractions<br>
-<div class="input-group">
-  <span class="input-group-addon" id="out_min_price">Minimum price</span>
-  <input type="text" class="form-control" placeholder="Free, £5, £10, £15, £20+" aria-describedby="basic-addon1">
-</div>
-<br>
-<div class="input-group">
-  <span class="input-group-addon" id="out_max_price">Maximum price</span>
-  <input type="text" class="form-control" placeholder="Free, £5, £10, £15, £20+" aria-describedby="basic-addon1"></div>
-</div>
-<div class="btn-group" role="group" aria-label="...">
-  <button type="button" class="btn btn-default" id="btn_submit">Submit</button>
-  <button type="button" class="btn btn-default" id="btn_cancel">Cancel</button>
-</div>
-</div>
-<!--stuffs -->
-    <!-- <p class="centered">
-  <div class="dropdown">
-  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-    Dropdown
-    <span class="caret"></span>
-  </button>
-  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-    <li><a href="#">Action</a></li>
-    <li><a href="#">Another action</a></li>
-    <li><a href="#">Something else here</a></li>
-    <li role="separator" class="divider"></li>
-    <li><a href="#">Separated link</a></li>
-  </ul>
-</div></p>
-<input type="checkbox" id="doodoo"><br>
-<p>Latitude: <input type="text" id="inputLatBox"></p><br>
-<p>Longiude: <input type="text" id="inputLonBox"></p><br><button type="button" value="Input Co-ordinates" onClick="
-  var inputLat = inputLatBox.value;
-  var inputLon = inputLonBox.value;
-  document.getElementById("demo").innerHTML = "Hello World";
-  L.map('map').setView([inputLat, inputLon], 13);
-
-">Input Coordinates</button>-->
-    <!-- Google Maps API KEY = AIzaSyCj0sq_giCoKo_trxBSK24zRNpWkwsSdX4 -->
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     
-    
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script>
-      var map = L.map('map').setView([55.948066, -3.192285], 13);
-       L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-      attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
-      maxZoom: 18,
-      id: 'blast1113.n16hp8j5',
-     accessToken: 'pk.eyJ1IjoiYmxhc3QxMTEzIiwiYSI6IjRmYzYxODYzYTdjNjgxNWRkOTM4YTUxYzFkYThhOGVkIn0.hmfn4KBQp1tdpb34BigwJg'
-     }).addTo(map);
-      for (var i = finalData.length - 1; i >= 0; i--) {
-        var latLon = finalData[i];
-        var originalItem = inputData[i];
-        var htmlString = '<p class="centered">' + (originalItem.tags.name) + '<br>' + originalItem.tags.cuisine + '<p>Phone: ' + originalItem.tags.phone + '</p>' + '<p>Website: ' + originalItem.tags.website + '</p>' + '<p>Address: ' + originalItem.tags.addrhousenumber + ' ' + originalItem.tags.addrstreet + '</p>' + '<p>Open: ' + originalItem.tags.opening_hours + '</p>' + '</p>';
-
-        L.marker(latLon).addTo(map)
-          .bindPopup(htmlString)
-          .openPopup();
-      };
-
-      //ignore this \/ \/
-      // function inputCoords(inputLat, InputLon) {
-
-      //   var inputLat = inputLatBox.value;
-      //   var inputLon = inputLonBox.value;
- 
-      //   L.map('map').setView([inputLat, inputLon], 13);
-      // }
-
-      function addMarker(location, text) {
-        L.marker(location).addTo(map).bindPopup(text).openPopup();
-      }
-
-      function calculateDistances(origin1, destinationA, travelMode1) {
-        var service = new google.maps.DistanceMatrixService();
-        service.getDistanceMatrix(
-          {
-            origins: [origin1],
-            destinations: [destinationA],
-            travelMode: travelMode1,
-            unitSystem: google.maps.UnitSystem.METRIC,
-            avoidHighways: false,
-            avoidTolls: false
-          }, callback);
-      }
 
 
-    </script>
-    <p id="demo"></p>
-  </div>
-  </body>
-</html>
+def print_restruants(variable):
+  result = []
+  for restaurant in variable:
+    result.append(only_important(restaurant))
+  return json.dumps(result)
+  # return variable["tags"]["cuisine"]
+
+if __name__ == "__main__":
+    app.run(debug=True)
